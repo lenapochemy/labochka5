@@ -1,8 +1,7 @@
 package data;
 
-import exceptions.NullException;
-import exceptions.IncorrectValueException;
-import exceptions.IncorrectGroupValueException;
+import exceptions.*;
+import manager.ConsoleManager;
 
 public class Coordinates {
     private int coordinatesX; //Максимальное значение поля: 79

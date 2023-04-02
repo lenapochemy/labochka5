@@ -1,6 +1,7 @@
 package data;
 
 import exceptions.*;
+import manager.ConsoleManager;
 
 import java.time.LocalDate;
 
@@ -33,7 +34,6 @@ public class StudyGroup {
 
 
     public StudyGroup() throws IncorrectGroupValueException{
-        try {
             this.setId(defaultId);
             this.setName(defaultName);
             this.setCoordinates(defaultCoordinates);
@@ -42,7 +42,6 @@ public class StudyGroup {
             this.setFormOfEducation(defaultFormOfEducation);
             this.setSemesterEnum(defaultSemesterEnum);
             this.setGroupAdmin(defaultPerson);
-        }
     }
 
     public StudyGroup(int id, String name, Coordinates coordinates, LocalDate creationDate, Integer studentsCount,

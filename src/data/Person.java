@@ -1,6 +1,7 @@
 package data;
 
 import exceptions.*;
+import manager.ConsoleManager;
 
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
