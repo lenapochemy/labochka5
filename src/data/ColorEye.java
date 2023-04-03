@@ -14,13 +14,8 @@ public enum ColorEye {
         this.color = color;
     }
 
-/*    public static String getList() {
-        StringBuilder types = new StringBuilder();
-        for (ColorEye type : values()) {
-            if(!type.equals(DEFAULT_COLOR)){
-                types.append(type.name()+" - "+type.ordinal()).append("; ");}
-        }
-        return types.substring(0, types.length() - 2);
+    public static void getAllValues(){
+        System.out.println(ColorEye.GREEN + ", " + ColorEye.RED+ ", " + ColorEye.BLUE +", " + ColorEye.ORANGE + ", " +ColorEye.BROWN);
     }
-*/
+
 }

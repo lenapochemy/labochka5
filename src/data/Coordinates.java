@@ -7,7 +7,7 @@ public class Coordinates {
     private int coordinatesX; //Максимальное значение поля: 79
     public static final int MAX_X = 79;
     private Double coordinatesY; // поле не может быть null
-    private final int defaultX = 0;
+    private static final int defaultX = 0;
     private final Double defaultY = 0D;
 
     public Coordinates() throws IncorrectGroupValueException{

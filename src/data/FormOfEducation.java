@@ -12,4 +12,8 @@ public enum FormOfEducation {
         this.formOfEducation = formOfEducation;
     }
 
+    public static void getAllValues(){
+        System.out.println(FormOfEducation.DISTANCE_EDUCATION + ", " + FormOfEducation.FULL_TIME_EDUCATION + ", " + FormOfEducation.EVENTING_CLASSES);
+    }
+
 }

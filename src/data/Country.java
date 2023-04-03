@@ -12,4 +12,8 @@ public enum Country {
     Country(String country){
         this.country = country;
     }
+
+    public static void getAllValues(){
+        System.out.println(Country.USA + ", " + Country.ITALY + ", " + Country.SOUTH_KOREA + ", " + Country.NORTH_KOREA);
+    }
 }
