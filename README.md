@@ -1,4 +1,4 @@
 ITMO
-cse
+CSE
 Programming
 laba 5
