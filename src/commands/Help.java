@@ -9,7 +9,7 @@ public class Help extends Command{
         super("help", "displays help for available commands");
     }
 
-    @Override
+
     public boolean execute(String command){
         try{
             if(command.isEmpty()) throw new ArgumentException();
