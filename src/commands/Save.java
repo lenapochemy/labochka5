@@ -12,16 +12,14 @@ public class Save extends Command{
         this.collectionManager = collectionManager;
     }
 
-    @Override
-    public boolean execute(String fileName){
+
+    public void execute(String fileName){
         try {
             if(fileName.isEmpty()) throw  new ArgumentException();
             collectionManager.saveCollection(fileName);
             ConsoleManager.printSuccess("Collection is saved!");
-            return true;
         } catch(ArgumentException e){
-            ConsoleManager.printError("Incorrect use of command" + getName());
+            ConsoleManager.printError("Incorrect use of command " + getName());
         }
-        return false;
     }
 }

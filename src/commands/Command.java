@@ -12,7 +12,8 @@ public abstract class Command {
         this.description = description;
     }
 
-    public abstract boolean execute(String argument) throws IOException;
+  //  public abstract void execute() throws IOException;
+   // public abstract void execute(String argument) throws IOException;
     public String getName(){
         return name;
     }

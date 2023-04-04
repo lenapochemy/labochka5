@@ -1,12 +1,10 @@
 package commands;
 
 import data.StudyGroup;
-import exceptions.IncorrectGroupValueException;
 import exceptions.IncorrectScriptException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 import manager.ScannerManager;
-import exceptions.ArgumentException;
 public class Add extends Command{
 
     private final CollectionManager collectionManager;
@@ -18,10 +16,9 @@ public class Add extends Command{
         this.scannerManager = scannerManager;
     }
 
-    @Override
-    public boolean execute(String argument){
+
+    public void execute(){
         try{
-            if(!argument.isEmpty()) throw new ArgumentException();
             collectionManager.addToCollection(
                     new StudyGroup(
                         collectionManager.generateId(),
@@ -35,12 +32,8 @@ public class Add extends Command{
                      )
             );
             ConsoleManager.printSuccess("New Study Group added to collection!");
-            return true;
-        } catch (ArgumentException e){
-            ConsoleManager.printError("Incorrect use of command" + getName());
         } catch (IncorrectScriptException e){
             ConsoleManager.printError("Script is incorrect");
         }
-        return false;
     }
 }

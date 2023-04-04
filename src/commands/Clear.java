@@ -12,16 +12,8 @@ public class Clear extends Command{
         this.collectionManager = collectionManager;
     }
 
-    @Override
-    public boolean execute(String argument){
-        try{
-            if(!argument.isEmpty()) throw new ArgumentException();
-            collectionManager.clearCollection();
-            ConsoleManager.printSuccess("Collection is cleared");
-            return true;
-        } catch (ArgumentException e){
-            ConsoleManager.printError("Incorrect use of command" + getName());
-        }
-        return false;
+    public void execute(){
+        collectionManager.clearCollection();
+        ConsoleManager.printSuccess("Collection is cleared");
     }
 }
