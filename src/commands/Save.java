@@ -1,0 +1,27 @@
+package commands;
+
+import manager.CollectionManager;
+import exceptions.ArgumentException;
+import manager.ConsoleManager;
+
+public class Save extends Command{
+    private final CollectionManager collectionManager;
+
+    public Save(CollectionManager collectionManager){
+        super("save", "save collection to file");
+        this.collectionManager = collectionManager;
+    }
+
+    @Override
+    public boolean execute(String fileName){
+        try {
+            if(fileName.isEmpty()) throw  new ArgumentException();
+            collectionManager.saveCollection(fileName);
+            ConsoleManager.printSuccess("Collection is saved!");
+            return true;
+        } catch(ArgumentException e){
+            ConsoleManager.printError("Incorrect use of command" + getName());
+        }
+        return false;
+    }
+}
