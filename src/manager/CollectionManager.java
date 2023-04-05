@@ -86,6 +86,14 @@ public class CollectionManager {
         lastSaveDate = LocalDate.now();
     }
 
+    public Integer getMaxGroup(){
+        Integer max = 0;
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getStudentsCount() > max) max = group.getStudentsCount();
+        }
+        return max;
+    }
+
     public StudyGroup getByID(int id){
         for(StudyGroup group : studyGroupCollection){
             if(group.getId() == id)  return group;
@@ -104,6 +112,22 @@ public class CollectionManager {
         studyGroupCollection.remove(studyGroup);
     }
 
+    public void removeGreater(Integer count){
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getStudentsCount() > count){
+                studyGroupCollection.remove(group);
+            }
+        }
+    }
+
+    public void removeLower(Integer count){
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getStudentsCount() < count){
+                studyGroupCollection.remove(group);
+            }
+        }
+    }
+
     public String collectionType(){
         try{
             if(studyGroupCollection.isEmpty()) throw new NullCollectionException();
@@ -112,6 +136,10 @@ public class CollectionManager {
             ConsoleManager.printError("Collection is empty");
             return "empty";
         }
+    }
+
+    public LocalDate generateLastInitDate(){
+        return LocalDate.now();
     }
 
     public LocalDate getLastInitDate(){

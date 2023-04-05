@@ -24,7 +24,7 @@ public class Add extends Command{
                         collectionManager.generateId(),
                         scannerManager.sayGroupName(),
                         scannerManager.sayCoordinates(),
-                        collectionManager.getLastInitDate().now(),
+                        collectionManager.generateLastInitDate(),
                         scannerManager.sayStudentsCount(),
                         scannerManager.sayFormOfEducation(),
                         scannerManager.saySemesterEnum(),

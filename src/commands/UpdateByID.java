@@ -28,16 +28,19 @@ public class UpdateByID extends Command{
             LocalDate creationDate = group.getCreationDate();
             collectionManager.removeFromCollection(group);
 
-            String name = scannerManager.sayGroupName();
-            Coordinates coordinates = scannerManager.sayCoordinates();
-            Integer studentsCount = scannerManager.sayStudentsCount();
-            FormOfEducation formOfEducation = scannerManager.sayFormOfEducation();
-            Semester semester = scannerManager.saySemesterEnum();
-            Person admin = scannerManager.sayPerson();
-
             collectionManager.addToCollection(
-                    new StudyGroup(id, name, coordinates, creationDate, studentsCount, formOfEducation, semester, admin)
-                );
+                    new StudyGroup(
+                            id,
+                            scannerManager.sayGroupName(),
+                            scannerManager.sayCoordinates(),
+                            creationDate,
+                            scannerManager.sayStudentsCount(),
+                            scannerManager.sayFormOfEducation(),
+                            scannerManager.saySemesterEnum(),
+                            scannerManager.sayPerson()
+                        )
+            );
+
             ConsoleManager.printSuccess("Element from collection was updated");
         } catch (ArgumentException e){
             ConsoleManager.printError("Incorrect use of command " + getName());
