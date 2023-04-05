@@ -12,7 +12,6 @@ public class Save extends Command{
         this.collectionManager = collectionManager;
     }
 
-
     public void execute(String fileName){
         try {
             if(fileName.isEmpty()) throw  new ArgumentException();
