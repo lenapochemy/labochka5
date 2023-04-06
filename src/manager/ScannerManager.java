@@ -27,6 +27,14 @@ public class ScannerManager {
         fileMode = false;
     }
 
+    public String sayPath() {
+        String path = "";
+        while(path.equals("")){
+            System.out.println("Give path like: \"set STUDY_GROUP_PATH=*path with\\* \" ");
+            path = System.getenv("STUDY_GROUP_PATH");
+        }
+        return path;
+    }
 
     public String sayName(String asking, String nameType) throws IncorrectScriptException{
         String name = "default_name";

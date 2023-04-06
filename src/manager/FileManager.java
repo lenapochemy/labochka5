@@ -9,10 +9,13 @@ import java.util.HashSet;
 import com.google.gson.*;
 
 public class FileManager {
+    private final String fileName;
+
     private final String PATH;
 
-    public FileManager(String path){
-        PATH = path;
+    public FileManager(String fileName){
+        this.fileName = fileName;
+        this.PATH = System.getenv("STUDY_GROUP_PATH") + fileName;
     }
 
     public HashSet<StudyGroup> readFromFile() throws FileNotFoundException{
@@ -35,15 +38,16 @@ public class FileManager {
             FileOutputStream writer = new FileOutputStream(file);
 
             parser.toJson((Object) studyGroupCollecion, (Type) writer);
-        } catch (FileNotFoundException e ){
-            ConsoleManager.printError("File is not found");
         } catch (IOException e){
             ConsoleManager.printError("Problem with file");
         }
 
     }
 
-
+    public boolean isFileEmpty(){
+        File file = new File(PATH);
+        return file.length() == 0;
+    }
 
 
     public Scanner getScanner(String fileName) throws FileNotFoundException{

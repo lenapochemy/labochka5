@@ -16,7 +16,7 @@ public class StudyGroup extends HashSet<StudyGroup> {
     private final String defaultName = "default_name";
 
     private Coordinates coordinates; //Поле не может быть null
-    private final Coordinates defaultCoordinates = new Coordinates();
+//    private final Coordinates defaultCoordinates = new Coordinates();
 
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private final LocalDate defaultCreationDate = LocalDate.now();
@@ -31,10 +31,11 @@ public class StudyGroup extends HashSet<StudyGroup> {
     private final Semester defaultSemesterEnum = Semester.DEFAULT_SEMESTER;
 
     private Person groupAdmin; //Поле может быть null
-    private Person defaultPerson = new Person();
+
+ //   private Person defaultPerson = new Person();
 
 
-    public StudyGroup() throws IncorrectGroupValueException{
+/*    public StudyGroup() throws IncorrectGroupValueException{
             this.setId(defaultId);
             this.setName(defaultName);
             this.setCoordinates(defaultCoordinates);
@@ -44,7 +45,7 @@ public class StudyGroup extends HashSet<StudyGroup> {
             this.setSemesterEnum(defaultSemesterEnum);
             this.setGroupAdmin(defaultPerson);
     }
-
+*/
     public StudyGroup(int id, String name, Coordinates coordinates, LocalDate creationDate, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
         this.id = id;

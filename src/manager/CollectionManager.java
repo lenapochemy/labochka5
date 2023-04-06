@@ -128,6 +128,51 @@ public class CollectionManager {
         }
     }
 
+    public void removeByFormOfEducation(FormOfEducation formOfEducation){
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getFormOfEducation().equals(formOfEducation)){
+                removeFromCollection(group);
+                break;
+            }
+        }
+    }
+
+    public void printCollection(){
+        for(StudyGroup group : studyGroupCollection){
+            System.out.println(group.toString());
+        }
+    }
+
+    public HashSet<StudyGroup> getGreater(Integer height){
+        HashSet<StudyGroup> greaterCollection = new HashSet<StudyGroup>();
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getGroupAdmin().getHeight() > height) {
+                greaterCollection.add(group);
+            }
+        }
+        return greaterCollection;
+    }
+
+    public void printFromOfEducation(){
+        int countDistance = 0;
+        int countFullTime = 0;
+        int countEventing = 0;
+        for(StudyGroup group : studyGroupCollection){
+            if(group.getFormOfEducation().equals(FormOfEducation.DISTANCE_EDUCATION)) countDistance++;
+            if(group.getFormOfEducation().equals(FormOfEducation.FULL_TIME_EDUCATION)) countFullTime++;
+            if(group.getFormOfEducation().equals(FormOfEducation.EVENTING_CLASSES)) countEventing++;
+        }
+        for(int i=0; i<=countEventing; i++){
+            System.out.println(FormOfEducation.EVENTING_CLASSES);
+        }
+        for(int i=0; i<=countFullTime; i++){
+            System.out.println(FormOfEducation.FULL_TIME_EDUCATION);
+        }
+        for(int i=0; i<=countDistance; i++){
+            System.out.println(FormOfEducation.DISTANCE_EDUCATION);
+        }
+    }
+
     public String collectionType(){
         try{
             if(studyGroupCollection.isEmpty()) throw new NullCollectionException();

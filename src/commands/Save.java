@@ -8,7 +8,7 @@ public class Save extends Command{
     private final CollectionManager collectionManager;
 
     public Save(CollectionManager collectionManager){
-        super("save", "save collection to file");
+        super("save <file_name>", "save collection to file");
         this.collectionManager = collectionManager;
     }
 
