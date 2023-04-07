@@ -1,19 +1,15 @@
 package commands;
 
 import data.FormOfEducation;
-import exceptions.IncorrectScriptException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
-import manager.ScannerManager;
 
 public class RemoveAnyByFormOfEducation extends Command{
     private final CollectionManager collectionManager;
-    private final ScannerManager scannerManager;
 
-    public RemoveAnyByFormOfEducation(CollectionManager collectionManager, ScannerManager scannerManager){
-        super("remove_by_any_form_of_education", "remove one group from collection, which have the same form of education");
+    public RemoveAnyByFormOfEducation(CollectionManager collectionManager){
+        super("remove_by_any_form_of_education <form_of_education>", "remove one group from collection, which have the same form of education");
         this.collectionManager = collectionManager;
-        this.scannerManager = scannerManager;
     }
 
     public void execute(String sFormOfEducation){

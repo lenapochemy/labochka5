@@ -5,22 +5,20 @@ import manager.ConsoleManager;
 
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private final String defaultName = "default_name";
-
     private Integer height; //Поле не может быть null, Значение поля должно быть больше 0
-    private final Integer defaultHeight = 170;
-
     private ColorEye eyeColor; //Поле может быть null
-    private final ColorEye defaultEyeColor = ColorEye.DEFAULT_COLOR;
-
     private ColorHair hairColor; //Поле не может быть null
-    private final ColorHair defaultHairColor = ColorHair.DEFAULT_COLOR;
-
     private Country nationality; //Поле не может быть null
-    private final Country defaultCountry = Country.DEFAULT_COUNTRY;
 
+    public Person(String name, Integer height,ColorEye eyeColor, ColorHair hairColor, Country nationality){
+        this.name = name;
+        this.height = height;
+        this.eyeColor = eyeColor;
+        this.hairColor = hairColor;
+        this.nationality = nationality;
+    }
 
-    public void setName(String name) throws IncorrectGroupValueException{
+ /*   public void setName(String name) throws IncorrectGroupValueException{
         try {
             if(name == null || name.isEmpty()) throw new NullException();
             this.name = name;
@@ -64,22 +62,8 @@ public class Person {
             ConsoleManager.printError("Nationality can't be hull");
         }
     }
-    public Person() throws IncorrectGroupValueException{
-        this.setName(defaultName);
-        this.setHeight(defaultHeight);
-        this.setEyeColor(defaultEyeColor);
-        this.setHairColor(defaultHairColor);
-        this.setNationality(defaultCountry);
-    }
 
-    public Person(String name, Integer height,ColorEye eyeColor, ColorHair hairColor, Country nationality){
-        this.name = name;
-        this.height = height;
-        this.eyeColor = eyeColor;
-        this.hairColor = hairColor;
-        this.nationality = nationality;
-    }
-
+*/
     public String getName(){
         return name;
     }
@@ -105,5 +89,10 @@ public class Person {
                 ", hairColor=" + hairColor +
                 ", nationality=" + nationality +
                 "}";
+    }
+
+    @Override
+    public int hashCode(){
+        return name.hashCode() + height.hashCode() + eyeColor.hashCode() + hairColor.hashCode() + nationality.hashCode();
     }
 }

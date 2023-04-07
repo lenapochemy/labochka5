@@ -62,7 +62,7 @@ public class Help extends Command{
     }
 
     public void execute(){
-        System.out.println("Command: help, Description: displays help for available commands");
+        System.out.println("Command: " + getName() + ", Description: " + getDescription());
         System.out.println("Command: execute_script <file_name>, Description: execute script from file");
         for(Command command: commandCollection){
             System.out.println("Command: " + command.getName() + ", Description: " + command.getDescription());

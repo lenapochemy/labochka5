@@ -5,13 +5,11 @@ import exceptions.NullCollectionException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 
-import java.lang.module.Configuration;
-
 public class FilterGreaterThanGroupAdmin extends Command{
     private final CollectionManager collectionManager;
 
     public FilterGreaterThanGroupAdmin(CollectionManager collectionManager){
-        super("filter_greater_than_group_admin", "display all groups from collection, whose admin is higher");
+        super("filter_greater_than_group_admin <height>", "display all groups from collection, whose admin is higher");
         this.collectionManager = collectionManager;
     }
 
@@ -20,7 +18,7 @@ public class FilterGreaterThanGroupAdmin extends Command{
             if(sHeight.isEmpty()) throw new ArgumentException();
             Integer height = Integer.parseInt(sHeight);
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();
-            System.out.println(collectionManager.getGreater(height));
+            collectionManager.getGreater(height);
         } catch (ArgumentException e){
             ConsoleManager.printError("Incorrect use of command " + getName());
         } catch (NumberFormatException e){

@@ -32,7 +32,7 @@ public class AddIfMax extends Command{
                 );
             if(group.getStudentsCount() > collectionManager.getMaxGroup()){
                 collectionManager.addToCollection(group);
-                ConsoleManager.printSuccess("New study group added to collection");
+                ConsoleManager.printSuccess("New study group added to collection!");
             } else {
                 ConsoleManager.printInfo("This study group is not max");
             }

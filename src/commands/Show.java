@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.ArgumentException;
 import exceptions.NullCollectionException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
@@ -18,7 +17,7 @@ public class Show extends Command{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();
             collectionManager.printCollection();
         } catch (NullCollectionException e){
-            ConsoleManager.printError("Collection is empty");
+            ConsoleManager.printInfo("Collection is empty");
         }
     }
 }

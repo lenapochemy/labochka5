@@ -4,7 +4,6 @@ import data.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.Scanner;
 import java.util.HashSet;
 import com.google.gson.*;
 
@@ -20,7 +19,7 @@ public class FileManager {
 
     public HashSet<StudyGroup> readFromFile() throws FileNotFoundException{
         Gson parser = new Gson();
-        HashSet<StudyGroup> studyGroupCollection = null;
+        HashSet<StudyGroup> studyGroupCollection = new HashSet<>();
         try{
             FileInputStream file = new FileInputStream(PATH);
             InputStreamReader reader = new InputStreamReader(file);
@@ -31,15 +30,15 @@ public class FileManager {
         return studyGroupCollection;
     }
 
-    public void writeToFile(HashSet<StudyGroup> studyGroupCollecion, String fileName){
+    public void writeToFile(HashSet<StudyGroup> studyGroupCollection, String fileName){
         Gson parser = new Gson();
         try {
             File file = new File(PATH + fileName);
             FileOutputStream writer = new FileOutputStream(file);
 
-            parser.toJson((Object) studyGroupCollecion, (Type) writer);
+            parser.toJson( studyGroupCollection, writer.getClass());
         } catch (IOException e){
-            ConsoleManager.printError("Problem with file");
+            ConsoleManager.printError("Problem with write to file");
         }
 
     }
@@ -50,17 +49,8 @@ public class FileManager {
     }
 
 
-    public Scanner getScanner(String fileName) throws FileNotFoundException{
-        try{
-            return new Scanner(new File(PATH + fileName));
-        } catch (Exception e){
-            throw new FileNotFoundException("File" + fileName + "should be in" + PATH);
-        }
-
-    }
-
-    public String getPATH(){
-        return PATH;
+    public String getFileName() {
+        return fileName;
     }
 }
 

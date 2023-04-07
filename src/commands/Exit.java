@@ -8,7 +8,7 @@ public class Exit extends Command{
     }
 
     public void execute(){
-        ConsoleManager.printSuccess("Program is finished");
+        ConsoleManager.printSuccess("Program is finished!");
         System.exit(0);
     }
 }

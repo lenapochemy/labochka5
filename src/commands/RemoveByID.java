@@ -15,7 +15,7 @@ public class RemoveByID extends Command{
     public void execute(String sID){
         try{
             if(sID.isEmpty()) throw new ArgumentException();
-            int id = Integer.valueOf(sID);
+            int id = Integer.parseInt(sID);
             collectionManager.removeByID(id);
             ConsoleManager.printSuccess("Element removed from collection!");
         } catch (ArgumentException e){

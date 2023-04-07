@@ -33,15 +33,12 @@ public class ConsoleManager {
 
     public void start() throws IOException{
         String[] mCommand = {"", ""};
-        try {
-            while (true) {
-                mCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
-                mCommand[1] = mCommand[1].trim();
-                execution(mCommand);
-            }
-        } catch (ArrayIndexOutOfBoundsException e){
-            ConsoleManager.printError("Error with input command");
+        while (!mCommand[0].equals("exit")) {
+            mCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
+            mCommand[1] = mCommand[1].trim();
+            execution(mCommand);
         }
+
     }
 
     public void execution(String[] mCommand){
@@ -69,14 +66,12 @@ public class ConsoleManager {
             }
         } catch (IOException e){
             ConsoleManager.printError("Script is incorrect");
-        } catch (ArrayIndexOutOfBoundsException e){
-            ConsoleManager.printError("Error with input command");
         }
     }
 
     public void scriptMode(String fileName) throws IOException{
         String path;
-        String[] mCommand = {"", ""};
+        String[] mCommand;
         HashSet<String> scriptCollection = new HashSet<>();
         scriptCollection.add(fileName);
         try{
@@ -107,8 +102,6 @@ public class ConsoleManager {
             ConsoleManager.printError("File is not found");
         } catch (RecurentScriptException e){
             ConsoleManager.printError("Recurse in script");
-        } catch (ArrayIndexOutOfBoundsException e){
-            ConsoleManager.printError("Error with input command");
         }
     }
 }

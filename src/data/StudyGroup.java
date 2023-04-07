@@ -9,43 +9,16 @@ import java.util.HashSet;
 public class StudyGroup extends HashSet<StudyGroup> {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным
     // Значение этого поля должно генерироваться автоматически
-    private final int defaultId = 1;
     public static final int wrongId = -1;
 
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private final String defaultName = "default_name";
-
     private Coordinates coordinates; //Поле не может быть null
-//    private final Coordinates defaultCoordinates = new Coordinates();
-
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private final LocalDate defaultCreationDate = LocalDate.now();
-
     private Integer studentsCount; //Значение поля должно быть больше 0, Поле может быть null
-    private Integer defaultStudentsCount = 1;
-
     private FormOfEducation formOfEducation; //Поле может быть null
-    private final FormOfEducation defaultFormOfEducation = FormOfEducation.DEFAULT_FROM_OR_EDUCATION;
-
     private Semester semesterEnum; //Поле может быть null
-    private final Semester defaultSemesterEnum = Semester.DEFAULT_SEMESTER;
-
     private Person groupAdmin; //Поле может быть null
 
- //   private Person defaultPerson = new Person();
-
-
-/*    public StudyGroup() throws IncorrectGroupValueException{
-            this.setId(defaultId);
-            this.setName(defaultName);
-            this.setCoordinates(defaultCoordinates);
-            this.setCreationDate(defaultCreationDate);
-            this.setStudentsCount(defaultStudentsCount);
-            this.setFormOfEducation(defaultFormOfEducation);
-            this.setSemesterEnum(defaultSemesterEnum);
-            this.setGroupAdmin(defaultPerson);
-    }
-*/
     public StudyGroup(int id, String name, Coordinates coordinates, LocalDate creationDate, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
         this.id = id;
@@ -64,7 +37,6 @@ public class StudyGroup extends HashSet<StudyGroup> {
             this.name = name;
         } catch (NullException e){
             ConsoleManager.printError("Name can't be empty");
-            this.name = defaultName;
             this.id = wrongId;
         }
     }
@@ -80,7 +52,7 @@ public class StudyGroup extends HashSet<StudyGroup> {
     }
 
     public void setCoordinates(Coordinates coordinates) throws IncorrectGroupValueException{
-        this.coordinates = new Coordinates();
+        this.coordinates = coordinates;
         this.coordinates.setX(coordinates.getCoordinatesX());
         this.coordinates.setY(coordinates.getCoordinatesY());
     }
@@ -91,7 +63,6 @@ public class StudyGroup extends HashSet<StudyGroup> {
             this.creationDate = creationDate;
         } catch (NullException e){
             ConsoleManager.printError("Date can't be null");
-            this.creationDate = defaultCreationDate;
             this.id = wrongId;
         }
     }
@@ -102,7 +73,6 @@ public class StudyGroup extends HashSet<StudyGroup> {
             this.studentsCount = studentsCount;
         } catch (IncorrectValueException e){
             ConsoleManager.printError("Students count can't be negative");
-            this.studentsCount = defaultStudentsCount;
             this.id = wrongId;
         }
     }
@@ -150,5 +120,10 @@ public class StudyGroup extends HashSet<StudyGroup> {
                 ", creationDate=" + creationDate + ", studentsCount = " + studentsCount +
                 ", formOfEducation=" + formOfEducation + ", semesterEnum=" + semesterEnum +
                 ", groupAdmin=" + groupAdmin + "}";
+    }
+
+    @Override
+    public int hashCode(){
+        return name.hashCode() + coordinates.hashCode() + studentsCount.hashCode() + formOfEducation.hashCode() + semesterEnum.hashCode() + groupAdmin.hashCode();
     }
 }

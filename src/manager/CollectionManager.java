@@ -11,7 +11,7 @@ import exceptions.NullException;
 
 public class CollectionManager {
     private HashSet<StudyGroup> studyGroupCollection = new HashSet<>();
-    private Set<Integer> idCollection = new HashSet<Integer>();
+    private Set<Integer> idCollection = new HashSet<>();
     private int newId = 1;
     private final FileManager fileManager;
 
@@ -25,7 +25,7 @@ public class CollectionManager {
     }
 
     public void createCollection(){
-        this.studyGroupCollection = new HashSet<StudyGroup>();
+        this.studyGroupCollection = new HashSet<>();
     }
 
     public void readFromFile(){
@@ -73,12 +73,7 @@ public class CollectionManager {
     }
 
     public void clearCollection(){
-        try{
-            if(studyGroupCollection == null) throw new NullCollectionException();
-            studyGroupCollection.clear();
-        } catch (NullCollectionException e){
-            ConsoleManager.printError("Collection is empty");
-        }
+        studyGroupCollection.clear();
     }
 
     public void saveCollection(String fileName){
@@ -108,14 +103,19 @@ public class CollectionManager {
 
     public void removeByID(int id){
         StudyGroup studyGroup = getByID(id);
-        idCollection.remove(id);
-        studyGroupCollection.remove(studyGroup);
+        try {
+            if(studyGroup == null) throw new NullException();
+            idCollection.remove(id);
+            studyGroupCollection.remove(studyGroup);
+        } catch (NullException e){
+            ConsoleManager.printError("Study group with this ID is not exists");
+        }
     }
 
     public void removeGreater(Integer count){
         for(StudyGroup group : studyGroupCollection){
             if(group.getStudentsCount() > count){
-                studyGroupCollection.remove(group);
+                removeFromCollection(group);
             }
         }
     }
@@ -123,7 +123,7 @@ public class CollectionManager {
     public void removeLower(Integer count){
         for(StudyGroup group : studyGroupCollection){
             if(group.getStudentsCount() < count){
-                studyGroupCollection.remove(group);
+                removeFromCollection(group);
             }
         }
     }
@@ -133,7 +133,7 @@ public class CollectionManager {
             if(group.getFormOfEducation().equals(formOfEducation)){
                 removeFromCollection(group);
                 break;
-            }
+                }
         }
     }
 
@@ -143,14 +143,13 @@ public class CollectionManager {
         }
     }
 
-    public HashSet<StudyGroup> getGreater(Integer height){
-        HashSet<StudyGroup> greaterCollection = new HashSet<StudyGroup>();
+    public void getGreater(Integer height){
         for(StudyGroup group : studyGroupCollection){
             if(group.getGroupAdmin().getHeight() > height) {
-                greaterCollection.add(group);
+                System.out.println(group.toString());
             }
         }
-        return greaterCollection;
+
     }
 
     public void printFromOfEducation(){
@@ -162,13 +161,13 @@ public class CollectionManager {
             if(group.getFormOfEducation().equals(FormOfEducation.FULL_TIME_EDUCATION)) countFullTime++;
             if(group.getFormOfEducation().equals(FormOfEducation.EVENTING_CLASSES)) countEventing++;
         }
-        for(int i=0; i<=countEventing; i++){
+        for(int i=0; i<countEventing; i++){
             System.out.println(FormOfEducation.EVENTING_CLASSES);
         }
-        for(int i=0; i<=countFullTime; i++){
+        for(int i=0; i<countFullTime; i++){
             System.out.println(FormOfEducation.FULL_TIME_EDUCATION);
         }
-        for(int i=0; i<=countDistance; i++){
+        for(int i=0; i<countDistance; i++){
             System.out.println(FormOfEducation.DISTANCE_EDUCATION);
         }
     }

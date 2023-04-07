@@ -20,20 +20,12 @@ public class ScannerManager {
     public void setScanner(Scanner scanner){
         this.scanner = scanner;
     }
+
     public void setFileMode(){
         fileMode = true;
     }
     public void setUserMode(){
         fileMode = false;
-    }
-
-    public String sayPath() {
-        String path = "";
-        while(path.equals("")){
-            System.out.println("Give path like: \"set STUDY_GROUP_PATH=*path with\\* \" ");
-            path = System.getenv("STUDY_GROUP_PATH");
-        }
-        return path;
     }
 
     public String sayName(String asking, String nameType) throws IncorrectScriptException{
@@ -53,7 +45,7 @@ public class ScannerManager {
     }
 
     public String sayGroupName() throws IncorrectScriptException{
-        return sayName("Give Study Group Name:", " Study Group name");
+        return sayName("Give Study Group Name:", "Study Group name");
     }
 
     public String sayPersonName() throws IncorrectScriptException{
@@ -65,7 +57,7 @@ public class ScannerManager {
         int x = 0;
         while(x == 0 || x > MAX_X){
             try{
-                System.out.print("Give coordinate X");
+                System.out.print("Give coordinate X:");
                 sX = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sX);
                 if(sX.equals("")) throw new NullException();
@@ -78,7 +70,7 @@ public class ScannerManager {
                 ConsoleManager.printError("Coordinate X can't be more than " + MAX_X);
                 if(fileMode) throw new IncorrectScriptException();
             } catch (NumberFormatException e){
-                ConsoleManager.printError("Coordinate X should be a number");
+                ConsoleManager.printError("Coordinate X should be a int number");
             }
         }
         return x;
@@ -89,7 +81,7 @@ public class ScannerManager {
         Double y = 0D;
         while (y == 0D){
             try{
-                System.out.print("Give coordinate Y");
+                System.out.print("Give coordinate Y:");
                 sY = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sY);
                 if(sY.equals("")) throw new NullException();
@@ -108,10 +100,7 @@ public class ScannerManager {
         try{
             int x = sayCoordinateX();
             Double y = sayCoordinateY();
-            Coordinates coordinates = new Coordinates();
-            coordinates.setX(x);
-            coordinates.setY(y);
-            return coordinates;
+            return new Coordinates(x,y);
         } catch (IncorrectGroupValueException e){
             ConsoleManager.printError(e);
             return null;
@@ -124,7 +113,7 @@ public class ScannerManager {
         Integer count = 0;
         while (count <= 0){
             try{
-                System.out.print("Give the number of students in the group");
+                System.out.print("Give the number of students in the group:");
                 sCount = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sCount);
                 if(sCount.equals("")) throw new NullException();
@@ -149,7 +138,7 @@ public class ScannerManager {
         Semester semester = Semester.DEFAULT_SEMESTER;
         while (semester.equals(Semester.DEFAULT_SEMESTER)){
             try{
-                System.out.print("Semester list:");
+                System.out.print("Semester list: ");
                 Semester.getAllValues();
                 System.out.print("Give semester:");
                 sSemester = scanner.nextLine().trim();
@@ -169,17 +158,17 @@ public class ScannerManager {
 
     public FormOfEducation sayFormOfEducation() throws IncorrectScriptException{
         String sFormOfEducation;
-        FormOfEducation formOfEducation = FormOfEducation.DEFAULT_FROM_OR_EDUCATION;
-        while(formOfEducation.equals(FormOfEducation.DEFAULT_FROM_OR_EDUCATION)){
+        FormOfEducation formOfEducation = FormOfEducation.DEFAULT_FORM_OR_EDUCATION;
+        while(formOfEducation.equals(FormOfEducation.DEFAULT_FORM_OR_EDUCATION)){
             try{
-                System.out.print("Form of education list:");
+                System.out.print("Form of education list: ");
                 FormOfEducation.getAllValues();
                 System.out.print("Give form of education:");
                 sFormOfEducation = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sFormOfEducation);
                 if(sFormOfEducation.equals("")) throw new NullException();
                 formOfEducation = FormOfEducation.valueOf(sFormOfEducation);
-                if(formOfEducation.equals(FormOfEducation.DEFAULT_FROM_OR_EDUCATION)) throw new IllegalArgumentException();
+                if(formOfEducation.equals(FormOfEducation.DEFAULT_FORM_OR_EDUCATION)) throw new IllegalArgumentException();
             } catch (NullException e){
                 ConsoleManager.printError("Form of education can't be empty");
                 if(fileMode) throw new IncorrectScriptException();
@@ -195,7 +184,7 @@ public class ScannerManager {
         ColorEye colorEye = ColorEye.DEFAULT_COLOR;
         while (colorEye.equals(ColorEye.DEFAULT_COLOR)){
             try{
-                System.out.print("Eye color list:");
+                System.out.print("Eye color list: ");
                 ColorEye.getAllValues();
                 System.out.println("Give eye color");
                 sColorEye = scanner.nextLine().trim();
@@ -241,7 +230,7 @@ public class ScannerManager {
         Country country = Country.DEFAULT_COUNTRY;
         while (country.equals(Country.DEFAULT_COUNTRY)){
             try{
-                System.out.print("Country list:");
+                System.out.print("Country list: ");
                 Country.getAllValues();
                 System.out.println("Give country");
                 sCountry = scanner.nextLine().trim();
@@ -261,10 +250,10 @@ public class ScannerManager {
 
     public Integer sayHeight() throws IncorrectScriptException{
         String sHeight;
-        Integer height = 170;
-        while (height == 170 || height <= 0){
+        Integer height = 0;
+        while ( height <= 0){
             try{
-                System.out.println("Give person height");
+                System.out.println("Give person height:");
                 sHeight = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sHeight);
                 if(sHeight.equals("")) throw new NullException();

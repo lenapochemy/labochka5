@@ -17,7 +17,7 @@ public class ExecuteScript extends Command{
         try{
             if(script.isEmpty()) throw new ArgumentException();
             consoleManager.scriptMode(script);
-            ConsoleManager.printSuccess("Script is executed");
+            ConsoleManager.printSuccess("Script is executed!");
         } catch (ArgumentException e){
             ConsoleManager.printError("Incorrect use of command " + getName());
         } catch (IOException e){

@@ -1,6 +1,5 @@
 package commands;
 
-import exceptions.ArgumentException;
 import exceptions.NullCollectionException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
@@ -19,15 +18,17 @@ public class Info extends Command{
         try{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();
             LocalDate lastInitDate = collectionManager.getLastInitDate();
-            String lastInitDateStr = (lastInitDate == null) ? "No command in this session":
-                    lastInitDate.toString();
+            String sLastInitDate;
+            if(lastInitDate == null) sLastInitDate = "No command in this session";
+                else sLastInitDate = lastInitDate.toString();
             LocalDate lastSaveDate = collectionManager.getLastSaveDate();
-            String lastSaveDateStr = (lastSaveDate == null) ? "No saved in this session":
-                    lastSaveDate.toString();
+            String sLastSaveDate;
+            if(lastSaveDate == null) sLastSaveDate = "No saved in this session";
+                else sLastSaveDate = lastSaveDate.toString();
             ConsoleManager.printInfo("Collection info:");
             ConsoleManager.printInfo("  Type: " + collectionManager.collectionType());
-            ConsoleManager.printInfo("  Last save: " + lastSaveDateStr);
-            ConsoleManager.printInfo("  Last init: " + lastInitDateStr);
+            ConsoleManager.printInfo("  Last save: " + sLastSaveDate);
+            ConsoleManager.printInfo("  Last init: " + sLastInitDate);
             ConsoleManager.printInfo("  Number of elements: " + collectionManager.collectionSize());
         } catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");

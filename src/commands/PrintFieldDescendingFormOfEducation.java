@@ -12,7 +12,6 @@ public class PrintFieldDescendingFormOfEducation extends Command{
         this.collectionManager = collectionManager;
     }
 
-
     public void execute(){
         try{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();

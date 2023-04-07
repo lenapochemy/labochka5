@@ -22,7 +22,7 @@ public class UpdateByID extends Command{
         try{
             if(sID.isEmpty()) throw new ArgumentException();
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();
-            int id = Integer.valueOf(sID);
+            int id = Integer.parseInt(sID);
             StudyGroup group = collectionManager.getByID(id);
             if(group == null) throw new NullException();
             LocalDate creationDate = group.getCreationDate();
@@ -41,13 +41,13 @@ public class UpdateByID extends Command{
                         )
             );
 
-            ConsoleManager.printSuccess("Element from collection was updated");
+            ConsoleManager.printSuccess("Element from collection was updated!");
         } catch (ArgumentException e){
             ConsoleManager.printError("Incorrect use of command " + getName());
         } catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");
         } catch (NullException e){
-            ConsoleManager.printError("This study group is empty");
+            ConsoleManager.printError("Study group with this ID is not exists");
         } catch (IncorrectScriptException e){
             ConsoleManager.printError("Script is incorrect");
         }

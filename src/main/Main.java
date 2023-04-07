@@ -1,7 +1,5 @@
 package main;
 
-import data.*;
-import exceptions.*;
 import manager.*;
 import commands.*;
 
@@ -16,7 +14,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ScannerManager scannerManager = new ScannerManager(scanner);
         try {
-        //    String path = scannerManager.sayPath();
+
             FileManager fileManager = new FileManager(path);
             CollectionManager collectionManager = new CollectionManager(fileManager);
 
@@ -37,7 +35,7 @@ public class Main {
             AddIfMax addIfMax = new AddIfMax(collectionManager, scannerManager);
             RemoveGreater removeGreater = new RemoveGreater(collectionManager);
             RemoveLower removeLower = new RemoveLower(collectionManager);
-            RemoveAnyByFormOfEducation removeAnyByFormOfEducation = new RemoveAnyByFormOfEducation(collectionManager, scannerManager);
+            RemoveAnyByFormOfEducation removeAnyByFormOfEducation = new RemoveAnyByFormOfEducation(collectionManager);
             FilterGreaterThanGroupAdmin filterGreaterThanGroupAdmin = new FilterGreaterThanGroupAdmin(collectionManager);
             PrintFieldDescendingFormOfEducation printFieldDescendingFormOfEducation = new PrintFieldDescendingFormOfEducation(collectionManager);
             Help help = new Help(info, show, add, updateByID, removeByID,  clear, save, exit,
@@ -45,7 +43,6 @@ public class Main {
                     filterGreaterThanGroupAdmin, printFieldDescendingFormOfEducation);
 
             ConsoleManager consoleManager = new ConsoleManager(scanner, scannerManager, help);
-            ExecuteScript executeScript = new ExecuteScript(consoleManager);
 
             ConsoleManager.printInfo("Program is working. Print \"help\" ");
             consoleManager.start();
