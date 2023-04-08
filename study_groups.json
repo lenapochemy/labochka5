@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "name1",
+    "coordinates": {
+      "x": 3,
+      "y": 4.5
+    },
+    "creationDate": "2023-04-08",
+    "studentsCount": 18,
+    "formOfEducation": "DISTANCE_EDUCATION",
+    "semesterEnum": "SECOND",
+    "groupAdmin": {
+      "name": "admin1",
+      "height": 176,
+      "eyeColor": "RED",
+      "hairColor": "GREEN",
+      "nationality": "USA"
+    }
+  },
+  {
+    "id": 2,
+    "name": "name2",
+    "coordinates": {
+      "x": 65,
+      "y": 445
+    },
+    "creationDate": "2023-01-08",
+    "studentsCount": 20,
+    "formOfEducation": "FULL_TIME_EDUCATION",
+    "semesterEnum": "SEVENTH",
+    "groupAdmin": {
+      "name": "admin2",
+      "height": 180,
+      "eyeColor": "BLUE",
+      "hairColor": "GREEN",
+      "nationality": "ITALY"
+    }
+  },
+  {
+    "id": 3,
+    "name": "name3",
+    "coordinates": {
+      "x": 23,
+      "y": 4.44
+    },
+    "creationDate": "2021-04-08",
+    "studentsCount": 12,
+    "formOfEducation": "DISTANCE_EDUCATION",
+    "semesterEnum": "SECOND",
+    "groupAdmin": {
+      "name": "admin3",
+      "height": 165,
+      "eyeColor": "BROWN",
+      "hairColor": "ORANGE",
+      "nationality": "USA"
+    }
+  }
+]

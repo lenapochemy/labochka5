@@ -1,63 +1,51 @@
 package manager;
 
 import data.*;
-import parser.*;
 import java.io.*;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.google.gson.*;
+import exceptions.IncorrectGroupValueException;
 
 public class FileManager {
     private final String fileName = "study_groups.json";
-
     private final String PATH = System.getenv("STUDY_GROUP_PATH");
+    private final String STUDY_PATH = PATH + fileName;
 
     public FileManager(){
     }
 
     public HashSet<StudyGroup> readFromFile() throws FileNotFoundException{
-        System.out.println("1");
-       // Gson parser = new Gson();
-        ObjectMapper parser = new ObjectMapper();
         HashSet<StudyGroup> studyGroupCollection = new HashSet<>();
-        System.out.println("2");
         try{
-          //  FileInputStream file = new FileInputStream(PATH + fileName);
-            System.out.println("3");
-           // InputStreamReader reader = new InputStreamReader(file);
-            System.out.println("4");
-            StudyGroup studyGroupList = parser.readValue(new File(PATH + fileName), StudyGroup.class);
-            studyGroupCollection.addAll(studyGroupList);
-            System.out.println("5 " + studyGroupCollection.isEmpty());
-          //  studyGroupCollection = parser.fromJson(reader, StudyGroup.class);
+            FileInputStream file = new FileInputStream(STUDY_PATH);
+            InputStreamReader reader = new InputStreamReader(file);
+            Parser parser = new Parser();
+
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                stringBuilder.append(line).append("\n");
+            }
+            bufferedReader.close();
+            String json = stringBuilder.toString();
+
+            studyGroupCollection = parser.parseFromJSON(json);
+
+
+        } catch (IncorrectGroupValueException e) {
+            throw new RuntimeException(e);
         } catch (IOException e){
-            ConsoleManager.printError("Cringe - Problem with file");
+            ConsoleManager.printError("Problem with input");
         }
         return studyGroupCollection;
     }
 
     public void writeToFile(HashSet<StudyGroup> studyGroupCollection, String fileName){
-   /*  Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .serializeNulls()
-                .create();
-*/
-        ToJSON parser = new ToJSON();
-      //  ObjectMapper parser = new ObjectMapper();
+        Parser parser = new Parser();
+
         File file = new File(PATH + fileName);
         try(FileOutputStream writer = new FileOutputStream(file)) {
-         //   String json = gson.toJson(studyGroupCollection);
-           // System.out.println(studyGroupCollection);
-           // System.out.println(json);
-           // writer.write(json.getBytes());
-
-           // parser.writeValue(writer, studyGroupCollection);
-
-            String json = parser.parseToJSON(studyGroupCollection);
-            writer.write(json.getBytes());
+            writer.write(parser.parseToJSON(studyGroupCollection).getBytes());
 
         } catch (IOException e){
             ConsoleManager.printError("Problem with write to file");

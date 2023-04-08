@@ -113,18 +113,26 @@ public class CollectionManager {
     }
 
     public void removeGreater(Integer count){
+        HashSet<Integer> idSet = new HashSet<>();
         for(StudyGroup group : studyGroupCollection){
             if(group.getStudentsCount() > count){
-                removeFromCollection(group);
+                idSet.add(group.getId());
             }
+        }
+        for(Integer id: idSet){
+            removeByID(id);
         }
     }
 
     public void removeLower(Integer count){
+        HashSet<Integer> idSet = new HashSet<>();
         for(StudyGroup group : studyGroupCollection){
             if(group.getStudentsCount() < count){
-                removeFromCollection(group);
+                idSet.add(group.getId());
             }
+        }
+        for(Integer id: idSet){
+            removeByID(id);
         }
     }
 

@@ -5,6 +5,7 @@ import manager.ConsoleManager;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.function.IntFunction;
 
 public class StudyGroup extends HashSet<StudyGroup> {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным
@@ -18,6 +19,10 @@ public class StudyGroup extends HashSet<StudyGroup> {
     private FormOfEducation formOfEducation; //Поле может быть null
     private Semester semesterEnum; //Поле может быть null
     private Person groupAdmin; //Поле может быть null
+
+    public StudyGroup(){
+
+    }
 
     public StudyGroup(int id, String name, Coordinates coordinates, LocalDate creationDate, Integer studentsCount,
                       FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin){
@@ -89,6 +94,8 @@ public class StudyGroup extends HashSet<StudyGroup> {
         this.groupAdmin = groupAdmin;
     }
 
+
+
     public int getId(){
         return id;
     }
@@ -117,9 +124,14 @@ public class StudyGroup extends HashSet<StudyGroup> {
     @Override
     public String toString(){
         return "StudyGroup{" + "id=" + id + ", name=" + name + ", coordinates=" + coordinates +
-                ", creationDate=" + creationDate + ", studentsCount = " + studentsCount +
+                ", creationDate=" + creationDate + ", studentsCount=" + studentsCount +
                 ", formOfEducation=" + formOfEducation + ", semesterEnum=" + semesterEnum +
                 ", groupAdmin=" + groupAdmin + "}";
+    }
+
+    @Override
+    public <T> T[] toArray(IntFunction<T[]> generator) {
+        return super.toArray(generator);
     }
 
     @Override

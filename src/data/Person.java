@@ -10,6 +10,9 @@ public class Person {
     private ColorHair hairColor; //Поле не может быть null
     private Country nationality; //Поле не может быть null
 
+    public Person(){
+
+    }
     public Person(String name, Integer height,ColorEye eyeColor, ColorHair hairColor, Country nationality){
         this.name = name;
         this.height = height;
@@ -18,7 +21,7 @@ public class Person {
         this.nationality = nationality;
     }
 
- /*   public void setName(String name) throws IncorrectGroupValueException{
+    public void setName(String name) throws IncorrectGroupValueException{
         try {
             if(name == null || name.isEmpty()) throw new NullException();
             this.name = name;
@@ -63,7 +66,6 @@ public class Person {
         }
     }
 
-*/
     public String getName(){
         return name;
     }

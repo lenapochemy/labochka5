@@ -8,7 +8,7 @@ public class PrintFieldDescendingFormOfEducation extends Command{
     private final CollectionManager collectionManager;
 
     public PrintFieldDescendingFormOfEducation(CollectionManager collectionManager){
-        super("print_descending_form_of_education","display all forms of education from collection in descending order");
+        super("print_field_descending_form_of_education","display all forms of education from collection in descending order");
         this.collectionManager = collectionManager;
     }
 
