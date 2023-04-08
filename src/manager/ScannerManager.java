@@ -186,7 +186,7 @@ public class ScannerManager {
             try{
                 System.out.print("Eye color list: ");
                 ColorEye.getAllValues();
-                System.out.println("Give eye color");
+                System.out.print("Give eye color:");
                 sColorEye = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sColorEye);
                 if(sColorEye.equals("")) throw new NullException();
@@ -209,7 +209,7 @@ public class ScannerManager {
             try {
                 System.out.print("Hair color list:");
                 ColorHair.getAllValues();
-                System.out.println("Give hair color");
+                System.out.print("Give hair color:");
                 sColorHair = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sColorHair);
                 if(sColorHair.equals("")) throw new NullException();
@@ -232,7 +232,7 @@ public class ScannerManager {
             try{
                 System.out.print("Country list: ");
                 Country.getAllValues();
-                System.out.println("Give country");
+                System.out.print("Give country:");
                 sCountry = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sCountry);
                 if(sCountry.equals("")) throw new NullException();
@@ -253,7 +253,7 @@ public class ScannerManager {
         Integer height = 0;
         while ( height <= 0){
             try{
-                System.out.println("Give person height:");
+                System.out.print("Give person height:");
                 sHeight = scanner.nextLine().trim();
                 if(fileMode) System.out.println(sHeight);
                 if(sHeight.equals("")) throw new NullException();

@@ -82,9 +82,8 @@ public class ConsoleManager {
             Scanner scannerOld = scannerManager.getSCanner();
             scannerManager.setScanner(scannerScript);
             scannerManager.setFileMode();
-
             while (scannerScript.hasNext() ) {
-                mCommand = (scanner.nextLine().trim() + " ").split(" ",2);
+                mCommand = (scannerScript.nextLine().trim() + " ").split(" ",2);
                 mCommand[1] = mCommand[1].trim();
                 if(mCommand[0].equals("execute_script")) {
                     for(String script: scriptCollection){
@@ -93,7 +92,7 @@ public class ConsoleManager {
                 }
                 execution(mCommand);
             }
-
+            ConsoleManager.printSuccess("Script is executed!");
             scannerManager.setScanner(scannerOld);
             scannerManager.setUserMode();
         } catch (FileException e){

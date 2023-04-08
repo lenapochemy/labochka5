@@ -10,12 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String path = System.getenv("STUDY_GROUP_PATH");
         Scanner scanner = new Scanner(System.in);
         ScannerManager scannerManager = new ScannerManager(scanner);
         try {
 
-            FileManager fileManager = new FileManager(path);
+            FileManager fileManager = new FileManager();
             CollectionManager collectionManager = new CollectionManager(fileManager);
 
             if(fileManager.isFileEmpty()) {
@@ -44,7 +43,15 @@ public class Main {
 
             ConsoleManager consoleManager = new ConsoleManager(scanner, scannerManager, help);
 
-            ConsoleManager.printInfo("Program is working. Print \"help\" ");
+
+            ConsoleManager.printInfo("Program is working!");
+            collectionManager.readFromFile();
+            if(collectionManager.collectionSize() >0) {
+                System.out.println("Collection is filled from file \"study_groups.json\"!");
+            } else {
+                System.out.println("File \"study_groups.json\" is not found, collection is empty");
+            }
+            ConsoleManager.printInfo("Print \"help\" ");
             consoleManager.start();
 
         } catch (IOException e){
