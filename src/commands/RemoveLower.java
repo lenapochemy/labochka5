@@ -4,6 +4,9 @@ import exceptions.ArgumentException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 
+/**
+ * Command "remove_lower", deletes elements from collection with less students
+ */
 public class RemoveLower extends Command{
     private final CollectionManager collectionManager;
     public RemoveLower(CollectionManager collectionManager){
@@ -11,6 +14,10 @@ public class RemoveLower extends Command{
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Executing the command "remove_lower"
+     * @param sCount string containing the student's count
+     */
     public void execute(String sCount){
         try{
             if(sCount.isEmpty()) throw new ArgumentException();

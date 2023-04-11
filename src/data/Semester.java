@@ -1,5 +1,7 @@
 package data;
-
+/**
+ * Enum represent group's semester value
+ */
 public enum Semester {
     SECOND("SECOND"),
     SIXTH("SIXTH"),
@@ -12,6 +14,9 @@ public enum Semester {
         this.semester = semester;
     }
 
+    /**
+     * Method outputs all possible semester values as string
+     */
     public static void getAllValues(){
         System.out.println(Semester.SECOND + ", " + Semester.SIXTH + ", " + Semester.SEVENTH);
     }

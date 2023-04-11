@@ -8,6 +8,9 @@ import manager.ScannerManager;
 
 import java.time.LocalDate;
 
+/**
+ * Command "update_by_id", updates one element from collection by id
+ */
 public class UpdateByID extends Command{
     private final CollectionManager collectionManager;
     private final ScannerManager scannerManager;
@@ -18,6 +21,10 @@ public class UpdateByID extends Command{
         this.scannerManager = scannerManager;
     }
 
+    /**
+     * Executing the command "update_by_id"
+     * @param sID string containing the id of the group to update
+     */
     public void execute(String sID){
         try{
             if(sID.isEmpty()) throw new ArgumentException();

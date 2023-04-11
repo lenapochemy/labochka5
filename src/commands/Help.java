@@ -2,6 +2,9 @@ package commands;
 
 import java.util.HashSet;
 
+/**
+ * Command 'help', displays information about all commands
+ */
 public class Help extends Command{
 
 
@@ -61,6 +64,9 @@ public class Help extends Command{
         commandCollection.add(printFieldDescendingFormOfEducation);
     }
 
+    /**
+     * Executing the command 'help'
+     */
     public void execute(){
         System.out.println("Command: " + getName() + ", Description: " + getDescription());
         System.out.println("Command: execute_script <file_name>, Description: execute script from file");

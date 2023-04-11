@@ -2,6 +2,9 @@ package commands;
 
 import java.util.Objects;
 
+/**
+ * Abstract command with name and description
+ */
 public abstract class Command {
     private final String name;
     private final String description;

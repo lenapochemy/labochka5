@@ -5,6 +5,10 @@ import exceptions.IncorrectScriptException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 import manager.ScannerManager;
+
+/**
+ * Command 'add', adds a new element to the collection
+ */
 public class Add extends Command{
 
     private final CollectionManager collectionManager;
@@ -17,6 +21,9 @@ public class Add extends Command{
     }
 
 
+    /**
+     * Executing the command 'add'
+     */
     public void execute(){
         try{
             collectionManager.addToCollection(
@@ -24,7 +31,7 @@ public class Add extends Command{
                         collectionManager.generateId(),
                         scannerManager.sayGroupName(),
                         scannerManager.sayCoordinates(),
-                        collectionManager.generateLastInitDate(),
+                        collectionManager.generateCreationDate(),
                         scannerManager.sayStudentsCount(),
                         scannerManager.sayFormOfEducation(),
                         scannerManager.saySemesterEnum(),

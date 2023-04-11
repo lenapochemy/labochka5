@@ -6,6 +6,9 @@ import manager.ConsoleManager;
 
 import java.time.LocalDate;
 
+/**
+ * Command 'info', displays information about collection
+ */
 public class Info extends Command{
     private final CollectionManager collectionManager;
 
@@ -14,6 +17,9 @@ public class Info extends Command{
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Executing the command 'info'
+     */
     public void execute(){
         try{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();

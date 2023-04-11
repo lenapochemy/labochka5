@@ -1,5 +1,7 @@
 package data;
-
+/**
+ * Enum represent person's country
+ */
 public enum Country {
     USA("USA"),
     ITALY("ITALY"),
@@ -13,6 +15,9 @@ public enum Country {
         this.country = country;
     }
 
+    /**
+     * Method outputs all possible student's country as string
+     */
     public static void getAllValues(){
         System.out.println(Country.USA + ", " + Country.ITALY + ", " + Country.SOUTH_KOREA + ", " + Country.NORTH_KOREA);
     }

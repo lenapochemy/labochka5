@@ -7,6 +7,9 @@ import manager.CollectionManager;
 import manager.ConsoleManager;
 import manager.ScannerManager;
 
+/**
+ * Command 'add_if_max', adds a new element to the collection if his students count is more than other groups in collection
+ */
 public class AddIfMax extends Command{
     private final CollectionManager collectionManager;
     private final ScannerManager scannerManager;
@@ -17,6 +20,9 @@ public class AddIfMax extends Command{
         this.scannerManager = scannerManager;
     }
 
+    /**
+     * Executing the command 'add_if_max'
+     */
     public void execute(){
         try{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();
@@ -24,7 +30,7 @@ public class AddIfMax extends Command{
                  collectionManager.generateId(),
                  scannerManager.sayGroupName(),
                  scannerManager.sayCoordinates(),
-                 collectionManager.generateLastInitDate(),
+                 collectionManager.generateCreationDate(),
                  scannerManager.sayStudentsCount(),
                  scannerManager.sayFormOfEducation(),
                  scannerManager.saySemesterEnum(),

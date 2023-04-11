@@ -2,7 +2,9 @@ package data;
 
 import exceptions.*;
 import manager.ConsoleManager;
-
+/**
+ * Class represent coordinates - group location
+ */
 public class Coordinates {
     private int x; //Максимальное значение поля: 79
     public static final int MAX_X = 79;
@@ -13,6 +15,12 @@ public class Coordinates {
         this.setX(x);
         this.setY(y);
     }
+
+    /**
+     * Method checks the correctness of coordinate X value
+     * @param coordinatesX verifiable coordinate X
+     * @throws IncorrectGroupValueException incorrect coordinate X value
+     */
     public void setX(int coordinatesX) throws IncorrectGroupValueException{
         try {
             if(coordinatesX > MAX_X) throw new IncorrectValueException();
@@ -23,6 +31,11 @@ public class Coordinates {
         }
     }
 
+    /**
+     * Method checks the correctness of coordinate X value
+     * @param coordinatesY verifiable coordinate Y
+     * @throws IncorrectGroupValueException incorrect coordinate Y value
+     */
     public void setY(Double coordinatesY) throws IncorrectGroupValueException{
         try {
             if(coordinatesY == null) throw new NullException();

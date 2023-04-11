@@ -1,5 +1,7 @@
 package data;
-
+/**
+ * Enum represent group's forms of education
+ */
 public enum FormOfEducation {
     DISTANCE_EDUCATION("DISTANCE_EDUCATION"),
     FULL_TIME_EDUCATION("FULL_TIME_EDUCATION"),
@@ -12,6 +14,9 @@ public enum FormOfEducation {
         this.formOfEducation = formOfEducation;
     }
 
+    /**
+     * Method outputs all possible form of education values as string
+     */
     public static void getAllValues(){
         System.out.println(FormOfEducation.DISTANCE_EDUCATION + ", " + FormOfEducation.FULL_TIME_EDUCATION + ", " + FormOfEducation.EVENTING_CLASSES);
     }

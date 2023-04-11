@@ -4,6 +4,9 @@ import exceptions.ArgumentException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 
+/**
+ * Command "remove_greater", deletes elements from collection with more students
+ */
 public class RemoveGreater extends Command{
     private final CollectionManager collectionManager;
 
@@ -12,6 +15,10 @@ public class RemoveGreater extends Command{
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Executing the command "remove_greater"
+     * @param sCount string containing the student's count
+     */
     public void execute(String sCount){
         try{
             if(sCount.isEmpty()) throw new ArgumentException();

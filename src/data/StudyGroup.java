@@ -4,12 +4,16 @@ import exceptions.*;
 import manager.ConsoleManager;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.function.IntFunction;
 
-public class StudyGroup extends HashSet<StudyGroup> {
+/**
+ * Class represent study group and his description
+ */
+public class StudyGroup {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным
     // Значение этого поля должно генерироваться автоматически
+    /**
+     * Invalid id value, assigned id if the group description values are incorrect, reports an error
+     */
     public static final int wrongId = -1;
 
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -21,7 +25,6 @@ public class StudyGroup extends HashSet<StudyGroup> {
     private Person groupAdmin; //Поле может быть null
 
     public StudyGroup(){
-
     }
 
     public StudyGroup(int id, String name, Coordinates coordinates, LocalDate creationDate, Integer studentsCount,
@@ -36,6 +39,10 @@ public class StudyGroup extends HashSet<StudyGroup> {
         this.groupAdmin = groupAdmin;
     }
 
+    /**
+     * Method checks the correctness of group's name value
+     * @param name verifiable name
+     */
     public void setName(String name){
         try {
             if(name == null || name.isEmpty()) throw new NullException();
@@ -46,6 +53,10 @@ public class StudyGroup extends HashSet<StudyGroup> {
         }
     }
 
+    /**
+     * Method checks the correctness of group's id value
+     * @param id verifiable id
+     */
     public void setId(int id){
         try {
             if(id <= 0) throw new IncorrectValueException();
@@ -56,12 +67,21 @@ public class StudyGroup extends HashSet<StudyGroup> {
         }
     }
 
+    /**
+     * Method checks the correctness of group's coordinates value
+     * @param coordinates verifiable coordinates
+     * @throws IncorrectGroupValueException не верное значение координат
+     */
     public void setCoordinates(Coordinates coordinates) throws IncorrectGroupValueException{
         this.coordinates = coordinates;
         this.coordinates.setX(coordinates.getCoordinatesX());
         this.coordinates.setY(coordinates.getCoordinatesY());
     }
 
+    /**
+     * Method checks the correctness of group's creation date value
+     * @param creationDate verifiable date
+     */
     public void setCreationDate(LocalDate creationDate){
         try {
             if(creationDate == null) throw new NullException();
@@ -72,6 +92,10 @@ public class StudyGroup extends HashSet<StudyGroup> {
         }
     }
 
+    /**
+     * Method checks the correctness of students count value
+     * @param studentsCount verifiable count
+     */
     public void setStudentsCount(Integer studentsCount){
         try {
             if(studentsCount <= 0) throw new IncorrectValueException();
@@ -82,14 +106,26 @@ public class StudyGroup extends HashSet<StudyGroup> {
         }
     }
 
+    /**
+     * Method assigns form of education value to group
+     * @param formOfEducation form of education
+     */
     public void setFormOfEducation(FormOfEducation formOfEducation){
         this.formOfEducation = formOfEducation;
     }
 
+    /**
+     * Method assigns semester value to group
+     * @param semesterEnum semester
+     */
     public void setSemesterEnum(Semester semesterEnum){
         this.semesterEnum = semesterEnum;
     }
 
+    /**
+     * Method assigns admin to group
+     * @param groupAdmin group's admin
+     */
     public void setGroupAdmin(Person groupAdmin){
         this.groupAdmin = groupAdmin;
     }
@@ -127,11 +163,6 @@ public class StudyGroup extends HashSet<StudyGroup> {
                 ", creationDate=" + creationDate + ", studentsCount=" + studentsCount +
                 ", formOfEducation=" + formOfEducation + ", semesterEnum=" + semesterEnum +
                 ", groupAdmin=" + groupAdmin + "}";
-    }
-
-    @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return super.toArray(generator);
     }
 
     @Override

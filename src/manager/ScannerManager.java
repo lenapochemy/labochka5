@@ -6,28 +6,48 @@ import data.*;
 import exceptions.*;
 import static data.Coordinates.MAX_X;
 
+/**
+ * Class responsible for reading data from the console to fill the collection
+ */
 public class ScannerManager {
     public Scanner scanner;
+    /**
+     * fileMode is equal to 1 if the collection is filled from a file, and 0 if it is filled through the console
+     */
     private boolean fileMode;
 
     public ScannerManager(Scanner scanner){
         this.scanner = scanner;
     }
 
-    public Scanner getSCanner(){
+    public Scanner getScanner(){
         return scanner;
     }
     public void setScanner(Scanner scanner){
         this.scanner = scanner;
     }
 
+    /**
+     * Enables filling a collection from a file
+     */
     public void setFileMode(){
         fileMode = true;
     }
+
+    /**
+     * Enables filling in a collection from a console
+     */
     public void setUserMode(){
         fileMode = false;
     }
 
+    /**
+     * Method gets the name from the input
+     * @param asking prompt to enter a name
+     * @param nameType type of name: group's or people's
+     * @return entered name
+     * @throws IncorrectScriptException incorrect name in script
+     */
     public String sayName(String asking, String nameType) throws IncorrectScriptException{
         String name = "default_name";
         while(name.equals("default_name") || name.equals("")){
@@ -44,14 +64,29 @@ public class ScannerManager {
         return name;
     }
 
+    /**
+     * Method gets the group's name from the input
+     * @return group's name
+     * @throws IncorrectScriptException incorrect group's name in script
+     */
     public String sayGroupName() throws IncorrectScriptException{
         return sayName("Give Study Group Name:", "Study Group name");
     }
 
+    /**
+     * Method gets the person's name from the input
+     * @return person's name
+     * @throws IncorrectScriptException incorrect person's name in script
+     */
     public String sayPersonName() throws IncorrectScriptException{
         return sayName("Give Admin name:", "Person name");
     }
 
+    /**
+     * Method gets the coordinate X value from the input
+     * @return coordinate X value
+     * @throws IncorrectScriptException incorrect coordinate X value in script
+     */
     public int sayCoordinateX() throws IncorrectScriptException{
         String sX;
         int x = 0;
@@ -76,6 +111,11 @@ public class ScannerManager {
         return x;
     }
 
+    /**
+     * Method gets the coordinate Y value from the input
+     * @return coordinate Y value
+     * @throws IncorrectScriptException incorrect coordinate Y value in script
+     */
     public Double sayCoordinateY() throws IncorrectScriptException{
         String sY;
         Double y = 0D;
@@ -96,6 +136,11 @@ public class ScannerManager {
         return y;
     }
 
+    /**
+     * Method gets the coordinates value from the input
+     * @return group's coordinates
+     * @throws IncorrectScriptException incorrect group's coordinates value in script
+     */
     public Coordinates sayCoordinates() throws IncorrectScriptException{
         try{
             int x = sayCoordinateX();
@@ -107,7 +152,11 @@ public class ScannerManager {
         }
     }
 
-
+    /**
+     * Method gets the students count value from the input
+     * @return students count
+     * @throws IncorrectScriptException incorrect students count value in script
+     */
     public Integer sayStudentsCount() throws IncorrectScriptException{
         String sCount;
         Integer count = 0;
@@ -133,6 +182,11 @@ public class ScannerManager {
         return count;
     }
 
+    /**
+     * Method gets the semester value from the input
+     * @return semester value
+     * @throws IncorrectScriptException incorrect semester value in script
+     */
     public Semester saySemesterEnum() throws IncorrectScriptException{
         String sSemester;
         Semester semester = Semester.DEFAULT_SEMESTER;
@@ -156,6 +210,11 @@ public class ScannerManager {
         return semester;
     }
 
+    /**
+     * Method gets the form of education value from the input
+     * @return form of education
+     * @throws IncorrectScriptException incorrect form of education value in script
+     */
     public FormOfEducation sayFormOfEducation() throws IncorrectScriptException{
         String sFormOfEducation;
         FormOfEducation formOfEducation = FormOfEducation.DEFAULT_FORM_OR_EDUCATION;
@@ -179,6 +238,11 @@ public class ScannerManager {
         return formOfEducation;
     }
 
+    /**
+     * Method gets the person's eye color from the input
+     * @return eye color
+     * @throws IncorrectScriptException incorrect person's eye color value in script
+     */
     public ColorEye sayColorEye() throws IncorrectScriptException{
         String sColorEye;
         ColorEye colorEye = ColorEye.DEFAULT_COLOR;
@@ -202,6 +266,11 @@ public class ScannerManager {
         return colorEye;
     }
 
+    /**
+     * Method gets the person's hair color from the input
+     * @return hair color
+     * @throws IncorrectScriptException incorrect person's hair color value in script
+     */
     public ColorHair sayColorHair() throws IncorrectScriptException{
         String sColorHair;
         ColorHair colorHair = ColorHair.DEFAULT_COLOR;
@@ -225,6 +294,11 @@ public class ScannerManager {
         return colorHair;
     }
 
+    /**
+     * Method gets the person's nationality from the input
+     * @return nationality
+     * @throws IncorrectScriptException incorrect person's nationality value in script
+     */
     public Country sayNationality() throws IncorrectScriptException{
         String sCountry;
         Country country = Country.DEFAULT_COUNTRY;
@@ -248,6 +322,11 @@ public class ScannerManager {
         return country;
     }
 
+    /**
+     * Method gets the person's height from the input
+     * @return person's height
+     * @throws IncorrectScriptException incorrect person's height value in script
+     */
     public Integer sayHeight() throws IncorrectScriptException{
         String sHeight;
         Integer height = 0;
@@ -270,6 +349,11 @@ public class ScannerManager {
         return height;
     }
 
+    /**
+     * Method gets the group's admin from the input
+     * @return group's admin
+     * @throws IncorrectScriptException incorrect person's description in script
+     */
     public Person sayPerson() throws IncorrectScriptException{
         return new Person(sayPersonName(), sayHeight(), sayColorEye(), sayColorHair(), sayNationality());
     }

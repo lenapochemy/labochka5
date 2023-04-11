@@ -5,6 +5,9 @@ import manager.ConsoleManager;
 
 import java.io.IOException;
 
+/**
+ * Command 'execute_script', executes commands from the file
+ */
 public class ExecuteScript extends Command{
     private final ConsoleManager consoleManager;
     public ExecuteScript(ConsoleManager consoleManager){
@@ -12,7 +15,10 @@ public class ExecuteScript extends Command{
         this.consoleManager = consoleManager;
     }
 
-
+    /**
+     * Executing the command 'execute_script'
+     * @param script string containing the name of the script file
+     */
     public void execute(String script){
         try{
             if(script.isEmpty()) throw new ArgumentException();

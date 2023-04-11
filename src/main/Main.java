@@ -1,12 +1,9 @@
 package main;
 
-import data.*;
-import exceptions.IncorrectGroupValueException;
 import manager.*;
 import commands.*;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -20,11 +17,16 @@ public class Main {
             FileManager fileManager = new FileManager();
             CollectionManager collectionManager = new CollectionManager(fileManager);
 
+            ConsoleManager.printInfo("Program is working!");
+
             if(fileManager.isFileEmpty()) {
                 collectionManager.createCollection();
+                System.out.println("File \"study_groups.json\" is not found or empty, so collection is empty");
             } else{
                 collectionManager.readFromFile();
+                System.out.println("Collection is filled from file \"study_groups.json\"!");
             }
+
 
             Info info = new Info(collectionManager);
             Show show = new Show(collectionManager);
@@ -46,14 +48,6 @@ public class Main {
 
             ConsoleManager consoleManager = new ConsoleManager(scanner, scannerManager, help);
 
-
-            ConsoleManager.printInfo("Program is working!");
-            collectionManager.readFromFile();
-            if(collectionManager.collectionSize() >0) {
-                System.out.println("Collection is filled from file \"study_groups.json\"!");
-            } else {
-                System.out.println("File \"study_groups.json\" is not found, collection is empty");
-            }
             ConsoleManager.printInfo("Print \"help\" ");
             consoleManager.start();
 

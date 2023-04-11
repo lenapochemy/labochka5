@@ -6,65 +6,69 @@ import exceptions.IncorrectGroupValueException;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+/**
+ * Сlass parses a collection of groups from StudyGroup format to json format and back
+ */
 public class Parser {
     public Parser(){
     }
 
+    /**
+     * Method translates the value of one group into a json string
+     * @param group group value in StudyGroup format
+     * @return string in json format containing the value of group
+     */
+    public String groupToJSON(StudyGroup group){
+        return "{\n" +
+                " \"id\": " + group.getId() + ",\n" +
+                " \"name\": \"" + group.getName() + "\",\n" +
+                " \"coordinates\": {\n" +
+                "  \"x\": " + group.getCoordinates().getCoordinatesX() + ",\n" +
+                "  \"y\": " + group.getCoordinates().getCoordinatesY() + "\n" +
+                " },\n" +
+                " \"creationDate\": \"" + group.getCreationDate() + "\",\n" +
+                " \"formOfEducation\": \"" + group.getFormOfEducation() + "\",\n" +
+                " \"semesterEnum\": \"" + group.getSemesterEnum() + "\",\n" +
+                " \"groupAdmin\": {\n" +
+                "  \"name\": \"" + group.getGroupAdmin().getName() + "\",\n" +
+                "  \"height\": " + group.getGroupAdmin().getHeight() + ",\n" +
+                "  \"eyeColor\": \"" + group.getGroupAdmin().getEyeColor() + "\",\n" +
+                "  \"hairColor\": \"" + group.getGroupAdmin().getHairColor() + "\",\n" +
+                "  \"nationality\": \"" + group.getGroupAdmin().getNationality() + "\"\n" +
+                "  }\n" +
+                "}";
+    }
+
+    /**
+     * Method translates the all collection of groups into a json string
+     * @param studyGroupCollection collection
+     * @return string in json format with a description of all groups from the collection
+     */
     public String parseToJSON(HashSet<StudyGroup> studyGroupCollection){
-        String json = "";
+        StringBuilder json = new StringBuilder();
         String stringGroup;
         if(studyGroupCollection.size() == 1){
             for(StudyGroup group: studyGroupCollection) {
-
-                json = "{\n" +
-                        " \"id\": " + group.getId() + ",\n" +
-                        " \"name\": \"" + group.getName() + "\",\n" +
-                        " \"coordinates\": {\n" +
-                        "  \"x\": " + group.getCoordinates().getCoordinatesX() + ",\n" +
-                        "  \"y\": " + group.getCoordinates().getCoordinatesY() + "\n" +
-                        " },\n" +
-                        " \"creationDate\": \"" + group.getCreationDate() + "\",\n" +
-                        " \"formOfEducation\": \"" + group.getFormOfEducation() + "\",\n" +
-                        " \"semesterEnum\": \"" + group.getSemesterEnum() + "\",\n" +
-                        " \"groupAdmin\": {\n" +
-                        "  \"name\": \"" + group.getGroupAdmin().getName() + "\",\n" +
-                        "  \"height\": " + group.getGroupAdmin().getHeight() + ",\n" +
-                        "  \"eyeColor\": \"" + group.getGroupAdmin().getEyeColor() + "\",\n" +
-                        "  \"hairColor\": \"" + group.getGroupAdmin().getHairColor() + "\",\n" +
-                        "  \"nationality\": \"" + group.getGroupAdmin().getNationality() + "\"\n" +
-                        "  }\n" +
-                        "}\n";
+                json = new StringBuilder(groupToJSON(group));
             }
+
         } else {
-            json = "[\n";
+            json = new StringBuilder("[\n ");
             for (StudyGroup group : studyGroupCollection) {
-                stringGroup = " {\n" +
-                        "  \"id\": " + group.getId() + ",\n" +
-                        "  \"name\": \"" + group.getName() + "\",\n" +
-                        "  \"coordinates\": {\n" +
-                        "   \"x\": " + group.getCoordinates().getCoordinatesX() + ",\n" +
-                        "   \"y\": " + group.getCoordinates().getCoordinatesY() + "\n" +
-                        "  },\n" +
-                        "  \"creationDate\": \"" + group.getCreationDate() + "\",\n" +
-                        "  \"formOfEducation\": \"" + group.getFormOfEducation() + "\",\n" +
-                        "  \"semesterEnum\": \"" + group.getSemesterEnum() + "\",\n" +
-                        "  \"groupAdmin\": {\n" +
-                        "   \"name\": \"" + group.getGroupAdmin().getName() + "\",\n" +
-                        "   \"height\": " + group.getGroupAdmin().getHeight() + ",\n" +
-                        "   \"eyeColor\": \"" + group.getGroupAdmin().getEyeColor() + "\",\n" +
-                        "   \"hairColor\": \"" + group.getGroupAdmin().getHairColor() + "\",\n" +
-                        "   \"nationality\": \"" + group.getGroupAdmin().getNationality() + "\"\n" +
-                        "   }\n" +
-                        " },\n";
-                json += stringGroup;
-
+                stringGroup = groupToJSON(group) + ",\n";
+                json.append(stringGroup);
             }
-            json = json.substring(0, json.length()-2) + "\n";
-            json += "]";
+            json = new StringBuilder(json.substring(0, json.length() - 2) + "\n");
+            json.append("]");
         }
-        return json;
+        return json.toString();
     }
 
+    /**
+     * Method translates string in json format into a group in the StudyGroup format
+     * @param json a string with information about the group in json format
+     * @return group in StudyGroup format
+     */
     public StudyGroup groupFromJSON(String json){
         int i1, i2;
         try {
@@ -146,6 +150,12 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Method translates collection of group from json format StudyGroup format
+     * @param json string in json format, containing information about collection
+     * @return groups collection in StudyGroup format
+     * @throws IncorrectGroupValueException incorrect group value
+     */
     public HashSet<StudyGroup> parseFromJSON(String json) throws IncorrectGroupValueException {
         HashSet<StudyGroup> studyGroupCollection = new HashSet<>();
 
@@ -159,8 +169,6 @@ public class Parser {
                 studyGroupCollection.add(group);
             }
         }
-
-
         return studyGroupCollection;
     }
 

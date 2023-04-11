@@ -4,6 +4,9 @@ import exceptions.NullCollectionException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 
+/**
+ * Command "show", displays all elements from collection
+ */
 public class Show extends Command{
     private final CollectionManager collectionManager;
 
@@ -12,6 +15,9 @@ public class Show extends Command{
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Executing the command "show"
+     */
     public void execute(){
         try{
             if(collectionManager.collectionSize() == 0) throw new NullCollectionException();

@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Scanner;
+
+/**
+ * Class responsible for the operation of the program and the execution of commands
+ */
 public class ConsoleManager {
     private final Scanner scanner;
     private final ScannerManager scannerManager;
@@ -20,17 +24,36 @@ public class ConsoleManager {
         this.help = help;
     }
 
+    /**
+     * Method displays information about the successful execution of commands
+     * @param message success message
+     */
     public static void printSuccess(Object message){
         System.out.println(message);
     }
+
+    /**
+     * Method displays information about error
+     * @param message error message
+     */
     public static void printError(Object message){
         System.out.println("Error: " + message);
     }
+
+    /**
+     * Method displays information about the operation of the program
+     * @param message information message
+     */
     public static void printInfo(Object message){
         System.out.println(message);
     }
 
 
+    /**
+     * Method starts the app,
+     * reads commands and executes them
+     * @throws IOException input error
+     */
     public void start() throws IOException{
         String[] mCommand = {"", ""};
         while (!mCommand[0].equals("exit")) {
@@ -38,9 +61,12 @@ public class ConsoleManager {
             mCommand[1] = mCommand[1].trim();
             execution(mCommand);
         }
-
     }
 
+    /**
+     * Method executes commands
+     * @param mCommand command name and argument(if there is one)
+     */
     public void execution(String[] mCommand){
         String command = mCommand[0];
         String argument = mCommand[1];
@@ -69,6 +95,11 @@ public class ConsoleManager {
         }
     }
 
+    /**
+     * Method starts executing commands from the script
+     * @param fileName name of the script
+     * @throws IOException input error
+     */
     public void scriptMode(String fileName) throws IOException{
         String path;
         String[] mCommand;
@@ -79,7 +110,7 @@ public class ConsoleManager {
             File file = new File(path);
             if(file.exists() && !file.canRead()) throw new FileException();
             Scanner scannerScript = new Scanner(file);
-            Scanner scannerOld = scannerManager.getSCanner();
+            Scanner scannerOld = scannerManager.getScanner();
             scannerManager.setScanner(scannerScript);
             scannerManager.setFileMode();
             while (scannerScript.hasNext() ) {
@@ -87,7 +118,7 @@ public class ConsoleManager {
                 mCommand[1] = mCommand[1].trim();
                 if(mCommand[0].equals("execute_script")) {
                     for(String script: scriptCollection){
-                        if(script.equals(fileName)) throw new RecurentScriptException();
+                        if(script.equals(mCommand[1])) throw new RecurentScriptException();
                     }
                 }
                 execution(mCommand);

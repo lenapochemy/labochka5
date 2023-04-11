@@ -5,14 +5,32 @@ import java.io.*;
 import java.util.HashSet;
 import exceptions.IncorrectGroupValueException;
 
+/**
+ * Class responsible for working with files
+ */
 public class FileManager {
+
+    /**
+     * Name of the initial file
+     */
     private final String fileName = "study_groups.json";
+    /**
+     * Path to the directory where the initial file is located and where the files will be saved
+     */
     private final String PATH = System.getenv("STUDY_GROUP_PATH");
+    /**
+     * Full link to the initial file
+     */
     private final String STUDY_PATH = PATH + fileName;
 
     public FileManager(){
     }
 
+    /**
+     * Method reads groups collection from the initial file
+     * @return collection of groups in StudyGroup format
+     * @throws FileNotFoundException file is missing in the directory
+     */
     public HashSet<StudyGroup> readFromFile() throws FileNotFoundException{
         HashSet<StudyGroup> studyGroupCollection = new HashSet<>();
         try{
@@ -30,16 +48,19 @@ public class FileManager {
             String json = stringBuilder.toString();
 
             studyGroupCollection = parser.parseFromJSON(json);
-
-
         } catch (IncorrectGroupValueException e) {
             throw new RuntimeException(e);
         } catch (IOException e){
-            ConsoleManager.printError("Problem with input");
+            ConsoleManager.printError("Problem with input file");
         }
         return studyGroupCollection;
     }
 
+    /**
+     * Method writes a collection of groups to a file in json format
+     * @param studyGroupCollection collection of groups
+     * @param fileName name of file to save the collection
+     */
     public void writeToFile(HashSet<StudyGroup> studyGroupCollection, String fileName){
         Parser parser = new Parser();
 
@@ -53,8 +74,12 @@ public class FileManager {
 
     }
 
+    /**
+     * The method checks if the file is empty
+     * @return 1 if file is empty, and 0 if file is not empty
+     */
     public boolean isFileEmpty(){
-        File file = new File(PATH+fileName);
+        File file = new File(STUDY_PATH);
         return file.length() == 0;
     }
 

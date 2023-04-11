@@ -5,6 +5,9 @@ import exceptions.NullCollectionException;
 import manager.CollectionManager;
 import manager.ConsoleManager;
 
+/**
+ *  Command 'filter_greater_than_group_admin', displays all the elements of collection, the admin's height value in which of greater
+ */
 public class FilterGreaterThanGroupAdmin extends Command{
     private final CollectionManager collectionManager;
 
@@ -13,6 +16,10 @@ public class FilterGreaterThanGroupAdmin extends Command{
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Executing the command 'filter_greater_than_group_admin'
+     * @param sHeight string containing the people's height
+     */
     public void execute(String sHeight){
         try{
             if(sHeight.isEmpty()) throw new ArgumentException();

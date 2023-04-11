@@ -1,5 +1,8 @@
 package data;
 
+/**
+ * Enum represent person's eye color
+ */
 public enum ColorEye {
     GREEN("GREEN"),
     RED("RED"),
@@ -14,6 +17,9 @@ public enum ColorEye {
         this.color = color;
     }
 
+    /**
+     * Method outputs all possible eye colors as string
+     */
     public static void getAllValues(){
         System.out.println(ColorEye.GREEN + ", " + ColorEye.RED+ ", " + ColorEye.BLUE +", " + ColorEye.ORANGE + ", " +ColorEye.BROWN);
     }

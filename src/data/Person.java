@@ -3,6 +3,9 @@ package data;
 import exceptions.*;
 import manager.ConsoleManager;
 
+/**
+ * Class represent person and his description
+ */
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Integer height; //Поле не может быть null, Значение поля должно быть больше 0
@@ -21,6 +24,11 @@ public class Person {
         this.nationality = nationality;
     }
 
+    /**
+     * Method checks the correctness of person's name
+     * @param name verifiable name
+     * @throws IncorrectGroupValueException incorrect name
+     */
     public void setName(String name) throws IncorrectGroupValueException{
         try {
             if(name == null || name.isEmpty()) throw new NullException();
@@ -31,6 +39,11 @@ public class Person {
         }
     }
 
+    /**
+     * Method checks the correctness of person's height value
+     * @param height verifiable height
+     * @throws IncorrectGroupValueException incorrect height
+     */
     public void setHeight(Integer height) throws IncorrectGroupValueException{
         try {
             if (height == null) throw new NullException();
@@ -44,10 +57,19 @@ public class Person {
             throw new IncorrectGroupValueException();
         }
     }
+
+    /**
+     * Method checks the correctness of person's eye color value
+     * @param eyeColor eye color
+     */
     public void setEyeColor(ColorEye eyeColor){
         this.eyeColor = eyeColor;
     }
 
+    /**
+     * Method checks the correctness of person's hair color value
+     * @param hairColor verifiable hair color
+     */
     public void setHairColor(ColorHair hairColor){
         try {
             if(hairColor == null) throw new NullException();
@@ -57,6 +79,10 @@ public class Person {
         }
     }
 
+    /**
+     * Method checks the correctness of person's nationality value
+     * @param nationality verifiable nationality
+     */
     public void setNationality(Country nationality){
         try {
             if(nationality == null) throw new NullException();
