@@ -27,7 +27,6 @@ public class Main {
                 System.out.println("Collection is filled from file \"study_groups.json\"!");
             }
 
-
             Info info = new Info(collectionManager);
             Show show = new Show(collectionManager);
             Add add = new Add(collectionManager, scannerManager);

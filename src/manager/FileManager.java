@@ -22,7 +22,6 @@ public class FileManager {
      * Full link to the initial file
      */
     private final String STUDY_PATH = PATH + fileName;
-
     public FileManager(){
     }
 

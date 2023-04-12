@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.File;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -56,10 +57,14 @@ public class ConsoleManager {
      */
     public void start() throws IOException{
         String[] mCommand = {"", ""};
-        while (!mCommand[0].equals("exit")) {
-            mCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
-            mCommand[1] = mCommand[1].trim();
-            execution(mCommand);
+        try{
+            while (!mCommand[0].equals("exit")) {
+                mCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
+                mCommand[1] = mCommand[1].trim();
+                execution(mCommand);
+            }
+        } catch (NoSuchElementException e){
+            ConsoleManager.printError("Ctrl+D, program is finished");
         }
     }
 

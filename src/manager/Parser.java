@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 
 /**
- * Сlass parses a collection of groups from StudyGroup format to json format and back
+ * Class parses a collection of groups from StudyGroup format to json format and back
  */
 public class Parser {
     public Parser(){
